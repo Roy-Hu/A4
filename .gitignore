@@ -1,0 +1,4 @@
+*.tbl
+.vscode
+*.o
+*.bin

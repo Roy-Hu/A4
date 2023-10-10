@@ -52,7 +52,6 @@ int main (int argc, char *argv[]) {
 		MyDB_BufferManagerPtr myMgr = make_shared <MyDB_BufferManager> (1024, 128, "tempFile");
 		MyDB_BPlusTreeReaderWriter supplierTable ("suppkey", myTable, myMgr);
 		supplierTable.loadFromTextFile ("supplier.tbl");
-
                 // there should be 10000 records
                 MyDB_RecordPtr temp = supplierTable.getEmptyRecord ();
                 MyDB_RecordIteratorAltPtr myIter = supplierTable.getIteratorAlt ();
@@ -142,6 +141,7 @@ int main (int argc, char *argv[]) {
                 QUNIT_IS_TRUE (result);
 	}
 	FALLTHROUGH_INTENDED;
+	
 	case 5:
 	{
 		cout << "TEST 5... creating tree for large table, on comment asking some queries" << flush;

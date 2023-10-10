@@ -29,15 +29,15 @@ public:
 	// create a BTree TableReaderWriter
 	MyDB_BPlusTreeReaderWriter (string nameOfAttToOrderOn, MyDB_TablePtr forMe, MyDB_BufferManagerPtr myBuffer);
 
-        // gets an instance of an alternate iterator over the table... this is an
-        // iterator that has the alternate getCurrent ()/advance () interface
+	// gets an instance of an alternate iterator over the table... this is an
+	// iterator that has the alternate getCurrent ()/advance () interface
 	// return all records with a key value in the range [low, high], inclusive
-        MyDB_RecordIteratorAltPtr getRangeIteratorAlt (MyDB_AttValPtr low, MyDB_AttValPtr high);
-	
-        // gets an instance of an alternate iterator over the table... this is an
-        // iterator that has the alternate getCurrent ()/advance () interface... returned records must be sorted
+	MyDB_RecordIteratorAltPtr getRangeIteratorAlt (MyDB_AttValPtr low, MyDB_AttValPtr high);
+
+	// gets an instance of an alternate iterator over the table... this is an
+	// iterator that has the alternate getCurrent ()/advance () interface... returned records must be sorted
 	// return all records with a key value in the range [low, high], inclusive
-        MyDB_RecordIteratorAltPtr getSortedRangeIteratorAlt (MyDB_AttValPtr low, MyDB_AttValPtr high);
+	MyDB_RecordIteratorAltPtr getSortedRangeIteratorAlt (MyDB_AttValPtr low, MyDB_AttValPtr high);
 	
 	// append a record to the B+-Tree
 	void append (MyDB_RecordPtr appendMe);
@@ -49,11 +49,12 @@ private:
 
 	/* NOTE THAT EACH OF THESE METHODS ARE OPTIONAL.  They are a suggestion for a set of helper
            methods that you might consider including in order to get your stuff to work. */
-
+	MyDB_RecordIteratorAltPtr getRangeIteratorAltHelper (MyDB_AttValPtr low, MyDB_AttValPtr high, bool sort);
+	void printTreeHelper (int whichPage, int level);
 	// gets a list of pages that might have data for an iterator... any leaf page that can possibly
 	// have a value in the range [low, high], inclusive should be returned from this call
 	bool discoverPages (int whichPage, vector <MyDB_PageReaderWriter> &list,
-        	MyDB_AttValPtr low, MyDB_AttValPtr high);
+			MyDB_AttValPtr low, MyDB_AttValPtr high);
 
 	// appends a record to the named page; if there is a split, then an MyDB_INRecordPtr is returned that
 	// points to the record holding the (key, ptr) pair pointing to the new page.  Note that the new page
